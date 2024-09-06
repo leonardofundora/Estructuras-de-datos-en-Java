@@ -45,7 +45,7 @@ public class BFS {
         boolean visited[] = new boolean[vertices];
 
         // Crea una cola para BFS
-        LinkedList<Integer> queue = new LinkedList<Integer>();
+        Queue<Integer> queue = new LinkedList<Integer>();
 
         // Marca el nodo actual como visitado y lo agrega a la cola
         visited[s] = true;
@@ -241,25 +241,22 @@ public class DFSIterative {
         // Crea una pila para DFS
         Stack<Integer> stack = new Stack<>();
 
-        // Empuja el nodo fuente a la pila
+        // Marca el nodo actual como visitado y lo agrega a la pila
+        visited[s] = true;
         stack.push(s);
 
         while (!stack.empty()) {
             // Saca un vértice de la pila
             s = stack.pop();
-
-            // Si el vértice no ha sido visitado, márquelo y procese
-            if (!visited[s]) {
-                System.out.print(s + " ");
-                visited[s] = true;
-            }
+            System.out.print(s + " ");
 
             // Obtiene todos los vértices adyacentes al vértice s
-            // Si un adyacente no ha sido visitado, se pone en la pila
+            // Si un adyacente no ha sido visitado, se marca como visitado y se pone en la pila
             Iterator<Integer> i = adj[s].listIterator();
             while (i.hasNext()) {
                 int n = i.next();
                 if (!visited[n]) {
+                    visited[n] = true;
                     stack.push(n);
                 }
             }
